@@ -1,0 +1,10 @@
+"use strict";
+const ciudad = "Barcelona";
+const altura = 183.5;
+const casado = false;
+const hijos = 2;
+const empleado = "MARCELO";
+const cargo = "programador";
+const edad = 26;
+console.log(`${ciudad}, ${altura}cm, casado: ${casado}, hijos: ${hijos}`);
+console.log(`${empleado}, ${cargo}cm, ${edad}:`);

@@ -1,6 +1,10 @@
 // src/App.tsx
 
+import UserGreeting from './components/UserGreeting'
 import WelcomeBanner       from './components/WelcomeBanner'
+import DigitalCounter from './useState/DigitalCounter'
+import TaskManager from './useState/TaskManager'
+import UserProfileForm from './useState/UserProfile'
 
 // ┌──────────────────────────────────────────────────────────────────────────┐
 // │  Cambia PASO y guarda (Ctrl+S) para navegar entre componentes.          │
@@ -18,7 +22,7 @@ import WelcomeBanner       from './components/WelcomeBanner'
 // │  12  ProductCatalogList  — lista con renderizado condicional de items   │
 // │  13  UserProfileCard     — ejercicio: props complejas + rol             │
 // └──────────────────────────────────────────────────────────────────────────┘
-const PASO = 1
+const PASO = 6
 
 const fruits = [
   { name: 'Manzana', emoji: '🍎', calories: 52 },
@@ -37,7 +41,7 @@ export default function App() {
   const content =
     PASO ===  1 ? <WelcomeBanner /> :
     PASO ===  2 ? <UserGreeting name="Ana García" occupation="Desarrolladora Frontend" /> :
-    {/*PASO ===  3 ? <CurrentDateDisplay /> :
+    PASO ===  3 ? <CurrentDateDisplay /> :
     PASO ===  4 ? (
       <div style={{ display: 'flex', gap: 12 }}>
         <ColoredBox color="#0070f3" label="Primary" />
@@ -45,7 +49,7 @@ export default function App() {
         <ColoredBox color="#e00"    label="Danger" />
       </div>
     ) :
-    PASO ===  5 ? <ConditionalGreeting isLoggedIn={true} userName="Ana" timeOfDay="afternoon" /> :
+    PASO ===  5 ? <ConditionalGreeting isLoggedIn={true} userName="Ana" timeOfDay="afternoon" /> :*/}
     PASO ===  6 ? <FruitList fruits={fruits} title="Frutas favoritas" /> :
     PASO ===  7 ? (
       <div style={{ display: 'flex', gap: 24, alignItems: 'flex-end' }}>
@@ -91,6 +95,9 @@ export default function App() {
         skills={['TypeScript', 'React', 'Node.js']}
         bio="Desarrolladora fullstack con 5 años de experiencia."
       />
+    PASO === 14 ? <DigitalCounter label='Contador' step={1} />
+    PASO === 15 ? <UserProfileForm /> 
+    PASO === 16 ? <TaskManager /> 
     ) :
     <p style={{ color: '#e00' }}>Paso {PASO}: crea el componente primero</p>*/}
 

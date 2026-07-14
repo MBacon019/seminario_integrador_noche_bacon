@@ -1,4 +1,3 @@
-// src/domain/entities/product.entity.ts
 import type { Category } from './category.entity'
 
 export interface Product {

@@ -1,4 +1,3 @@
-// src/presentation/components/FilterPanel.tsx
 import { SlidersHorizontal } from 'lucide-react'
 import { Button } from '@/presentation/components/ui/button'
 import {
@@ -55,12 +54,10 @@ export function FilterPanel({ className }: FilterPanelProps) {
 
   return (
     <>
-      {/* Sidebar visible en escritorio */}
       <aside className={`hidden lg:block ${className ?? ''}`}>
         <FilterContent />
       </aside>
 
-      {/* Botón + Sheet visible en móvil */}
       <div className="lg:hidden">
         <Sheet>
           <SheetTrigger asChild>

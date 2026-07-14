@@ -1,4 +1,3 @@
-// src/presentation/pages/catalog/CatalogPage.tsx
 import { useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { CategoryFilter } from '@/presentation/components/CategoryFilter'
@@ -45,10 +44,8 @@ export default function CatalogPage() {
     <div>
       <h1 className="mb-4 text-2xl font-bold">Catálogo</h1>
 
-      {/* Barra de herramientas */}
       <div className="mb-4 flex flex-wrap items-center gap-3">
         <SearchBar />
-        {/* Botón de filtros solo visible en móvil */}
         <div className="lg:hidden">
           <FilterPanel />
         </div>
@@ -57,17 +54,13 @@ export default function CatalogPage() {
         </p>
       </div>
 
-      {/* Filtro horizontal de categorías solo en escritorio */}
       <div className="mb-6 hidden lg:block">
         <CategoryFilter layout="horizontal" />
       </div>
 
-      {/* Layout de dos columnas en escritorio */}
       <div className="lg:grid lg:grid-cols-[240px_1fr] lg:gap-8">
-        {/* Sidebar de filtros (escritorio) */}
         <FilterPanel className="sticky top-20 h-fit" />
 
-        {/* Columna principal */}
         <div>
           {isLoading ? (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
@@ -87,7 +80,6 @@ export default function CatalogPage() {
             </div>
           )}
 
-          {/* Paginación */}
           {!isLoading && products.length > 0 && (
             <div className="mt-8 flex items-center justify-center gap-4">
               <Button

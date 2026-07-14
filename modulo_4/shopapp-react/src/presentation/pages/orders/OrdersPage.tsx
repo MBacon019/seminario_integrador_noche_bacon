@@ -1,4 +1,3 @@
-// src/presentation/pages/orders/OrdersPage.tsx
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Package } from 'lucide-react'
@@ -12,8 +11,6 @@ import { formatPrice, formatDate } from '@/presentation/utils/formatters'
 import { StatusBadge } from '@/presentation/components/StatusBadge'
 
 const PAGE_SIZE = 10
-
-// ── Skeletons ────────────────────────────────────────────────────────────────
 
 function OrderCardSkeleton() {
   return (
@@ -31,8 +28,6 @@ function OrderCardSkeleton() {
     </Card>
   )
 }
-
-// ── Estado vacío ─────────────────────────────────────────────────────────────
 
 function EmptyOrders() {
   const navigate = useNavigate()
@@ -56,8 +51,6 @@ function EmptyOrders() {
     </div>
   )
 }
-
-// ── Página principal ─────────────────────────────────────────────────────────
 
 export default function OrdersPage() {
   const navigate = useNavigate()

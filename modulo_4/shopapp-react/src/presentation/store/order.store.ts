@@ -1,4 +1,3 @@
-// src/presentation/store/order.store.ts
 import { create } from 'zustand'
 import { orderUseCase } from '@/infrastructure/factories/order.factory'
 import { useCartStore } from '@/presentation/store/cart.store'

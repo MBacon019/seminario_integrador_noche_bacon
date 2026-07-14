@@ -1,4 +1,3 @@
-// src/presentation/components/CategoryFilter.tsx
 import { useCatalogStore } from '@/presentation/store/catalog.store'
 import { Button } from '@/presentation/components/ui/button'
 import { cn } from '@/presentation/utils/cn'

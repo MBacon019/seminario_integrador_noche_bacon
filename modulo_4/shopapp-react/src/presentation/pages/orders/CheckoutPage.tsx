@@ -1,4 +1,3 @@
-// src/presentation/pages/orders/CheckoutPage.tsx
 import { useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { AlertCircle, Loader2, ShoppingBag } from 'lucide-react'
@@ -41,7 +40,7 @@ export default function CheckoutPage() {
       const newOrder = await placeOrder(items)
       navigate(`/orders/${newOrder.id}`, { replace: true })
     } catch {
-      // El error ya está en el store; el componente lo muestra.
+      // error is already in the store
     }
   }
 
@@ -78,7 +77,7 @@ export default function CheckoutPage() {
                 <div className="text-sm">
                   <p className="font-medium leading-snug">{item.product.name}</p>
                   <p className="text-muted-foreground">
-                    {item.quantity} × {formatPrice(item.product.price)}
+                    {item.quantity} &times; {formatPrice(item.product.price)}
                   </p>
                 </div>
               </div>
@@ -111,7 +110,7 @@ export default function CheckoutPage() {
           {isLoading ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" />
-              Procesando…
+              Procesando&hellip;
             </>
           ) : (
             <>

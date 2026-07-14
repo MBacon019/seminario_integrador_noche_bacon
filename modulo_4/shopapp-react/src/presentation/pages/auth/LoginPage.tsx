@@ -1,4 +1,3 @@
-// src/presentation/pages/auth/LoginPage.tsx
 import { useEffect } from 'react'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -19,8 +18,6 @@ import {
   CardTitle,
 } from '@/presentation/components/ui/card'
 
-// ─── Schema de validación ─────────────────────────────────────────────────────
-
 const loginSchema = z.object({
   username: z
     .string()
@@ -32,18 +29,14 @@ const loginSchema = z.object({
 
 type LoginFormData = z.infer<typeof loginSchema>
 
-// ─── Componente ───────────────────────────────────────────────────────────────
-
 export default function LoginPage() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  // Destino al que redirigir tras login (si vinieron de una ruta protegida)
   const from = (location.state as { from?: Location })?.from?.pathname ?? '/'
 
   const { login, isLoading, error, clearError, user } = useAuthStore()
 
-  // Si ya está autenticado, redirigir directamente
   useEffect(() => {
     if (user) navigate(from, { replace: true })
   }, [user, from, navigate])
@@ -62,7 +55,7 @@ export default function LoginPage() {
       await login(data.username, data.password)
       navigate(from, { replace: true })
     } catch {
-      // El error ya se guardó en el store; no necesitamos hacer nada aquí
+      // error is already in the store
     }
   }
 
@@ -70,7 +63,6 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-muted/40 px-4">
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
-          {/* Logo / marca */}
           <div className="flex justify-center mb-2">
             <div className="flex items-center gap-2 rounded-full bg-primary p-3 text-primary-foreground">
               <ShoppingBag className="h-6 w-6" />
@@ -82,14 +74,12 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <CardContent className="space-y-4">
-            {/* Error global de la API */}
             {error && (
               <div className="rounded-md bg-destructive/10 px-4 py-3 text-sm text-destructive">
                 {error}
               </div>
             )}
 
-            {/* Campo: username */}
             <div className="space-y-1">
               <Label htmlFor="username">Usuario</Label>
               <Input
@@ -105,7 +95,6 @@ export default function LoginPage() {
               )}
             </div>
 
-            {/* Campo: password */}
             <div className="space-y-1">
               <Label htmlFor="password">Contraseña</Label>
               <Input

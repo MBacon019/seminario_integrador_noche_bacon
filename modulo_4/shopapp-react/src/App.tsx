@@ -1,16 +1,11 @@
-// src/App.tsx — SOLO PARA VERIFICACIÓN, eliminar después
-import { useEffect } from 'react'
+import { Toaster } from 'sonner'
 import AppRouter from './presentation/router/AppRouter'
-import { apiClient } from './infrastructure/http/axios-client'
 
 export default function App() {
-  useEffect(() => {
-    apiClient.get('/products/').then((res) => {
-      console.log('[apiClient] Productos:', res.data)
-    }).catch((err) => {
-      console.error('[apiClient] Error:', err)
-    })
-  }, [])
-
-  return <AppRouter />
+  return (
+    <>
+      <AppRouter />
+      <Toaster richColors position="top-right" />
+    </>
+  )
 }

@@ -1,4 +1,3 @@
-// src/presentation/pages/catalog/ProductDetailPage.tsx
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Minus, Plus, ShoppingCart } from 'lucide-react'
@@ -20,8 +19,6 @@ import { productUseCase } from '@/infrastructure/factories/product.factory'
 import { useCartStore } from '@/presentation/store/cart.store'
 import { formatPrice } from '@/presentation/utils/formatters'
 import type { Product } from '@/domain/entities/product.entity'
-
-// ── Skeleton de carga ────────────────────────────────────────────────────────
 
 function ProductDetailSkeleton() {
   return (
@@ -45,8 +42,6 @@ function ProductDetailSkeleton() {
     </div>
   )
 }
-
-// ── Selector de cantidad ─────────────────────────────────────────────────────
 
 interface QuantitySelectorProps {
   value: number
@@ -86,8 +81,6 @@ function QuantitySelector({ value, min = 1, max, onChange }: QuantitySelectorPro
     </div>
   )
 }
-
-// ── Página principal ─────────────────────────────────────────────────────────
 
 export default function ProductDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -142,7 +135,6 @@ export default function ProductDetailPage() {
 
   return (
     <div className="container py-8">
-      {/* Breadcrumb */}
       <Breadcrumb className="mb-6">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -163,9 +155,7 @@ export default function ProductDetailPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      {/* Layout de dos columnas */}
       <div className="grid gap-8 md:grid-cols-2">
-        {/* Imagen del producto */}
         <div className="overflow-hidden rounded-xl border bg-muted">
           {product.image ? (
             <img
@@ -180,7 +170,6 @@ export default function ProductDetailPage() {
           )}
         </div>
 
-        {/* Información del producto */}
         <div className="flex flex-col gap-5">
           <Badge variant="secondary" className="w-fit">
             {product.category.name}

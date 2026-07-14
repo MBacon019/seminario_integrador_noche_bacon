@@ -1,4 +1,3 @@
-// src/presentation/store/catalog.store.ts
 import { create } from 'zustand'
 import { categoryUseCase } from '@/infrastructure/factories/category.factory'
 import { productUseCase } from '@/infrastructure/factories/product.factory'
@@ -68,9 +67,9 @@ export const useCatalogStore = create<CatalogState & CatalogActions>((set, get) 
   async fetchCategories() {
     try {
       const data = await categoryUseCase.getCategories()
-      set({ categories: data })
+      set({ categories: data.filter((c) => c.is_active) })
     } catch {
-      // Las categorías son opcionales; no bloquear la UI si fallan
+      // Categories are optional; don't block the UI if they fail
     }
   },
 

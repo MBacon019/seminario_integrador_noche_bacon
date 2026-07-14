@@ -1,4 +1,3 @@
-// src/presentation/components/StatusBadge.tsx
 import { Badge } from '@/presentation/components/ui/badge'
 import type { OrderStatus } from '@/domain/enums/order-status.enum'
 
@@ -35,7 +34,6 @@ interface StatusBadgeProps {
   className?: string
 }
 
-/** Badge reutilizable que traduce un `OrderStatus` a etiqueta y color. */
 export function StatusBadge({ status, className = '' }: StatusBadgeProps) {
   const config = STATUS_MAP[status]
 

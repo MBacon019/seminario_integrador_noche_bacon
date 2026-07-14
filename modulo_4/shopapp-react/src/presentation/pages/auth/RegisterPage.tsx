@@ -1,4 +1,3 @@
-// src/presentation/pages/auth/RegisterPage.tsx
 import { useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -18,8 +17,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/presentation/components/ui/card'
-
-// ─── Schema de validación ─────────────────────────────────────────────────────
 
 const registerSchema = z
   .object({
@@ -49,13 +46,10 @@ const registerSchema = z
 
 type RegisterFormData = z.infer<typeof registerSchema>
 
-// ─── Componente ───────────────────────────────────────────────────────────────
-
 export default function RegisterPage() {
   const navigate = useNavigate()
   const { register: registerUser, isLoading, error, clearError, user } = useAuthStore()
 
-  // Si ya está autenticado, ir al inicio
   useEffect(() => {
     if (user) navigate('/', { replace: true })
   }, [user, navigate])
@@ -74,7 +68,7 @@ export default function RegisterPage() {
       await registerUser(data.username, data.email, data.password)
       navigate('/', { replace: true })
     } catch {
-      // El error ya está en el store
+      // error is already in the store
     }
   }
 
@@ -93,14 +87,12 @@ export default function RegisterPage() {
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <CardContent className="space-y-4">
-            {/* Error global de la API */}
             {error && (
               <div className="rounded-md bg-destructive/10 px-4 py-3 text-sm text-destructive">
                 {error}
               </div>
             )}
 
-            {/* Campo: username */}
             <div className="space-y-1">
               <Label htmlFor="username">Usuario</Label>
               <Input
@@ -116,7 +108,6 @@ export default function RegisterPage() {
               )}
             </div>
 
-            {/* Campo: email */}
             <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -132,7 +123,6 @@ export default function RegisterPage() {
               )}
             </div>
 
-            {/* Campo: password */}
             <div className="space-y-1">
               <Label htmlFor="password">Contraseña</Label>
               <Input
@@ -148,7 +138,6 @@ export default function RegisterPage() {
               )}
             </div>
 
-            {/* Campo: confirmPassword */}
             <div className="space-y-1">
               <Label htmlFor="confirmPassword">Confirmar contraseña</Label>
               <Input

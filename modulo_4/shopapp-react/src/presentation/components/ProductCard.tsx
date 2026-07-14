@@ -1,4 +1,3 @@
-// src/presentation/components/ProductCard.tsx
 import { ShoppingBag } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/presentation/components/ui/badge'

@@ -1,4 +1,3 @@
-// src/presentation/components/CartDrawer.tsx
 import { Link, useNavigate } from 'react-router-dom'
 import { ShoppingCart, X } from 'lucide-react'
 
@@ -61,7 +60,6 @@ export function CartDrawer() {
           </div>
         ) : (
           <>
-            {/* Lista de ítems con scroll */}
             <ScrollArea className="flex-1 py-4">
               <ul className="space-y-4 pr-4">
                 {items.map((item) => (

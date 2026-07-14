@@ -1,4 +1,3 @@
-// src/presentation/components/SearchBar.tsx
 import { useEffect, useRef, useState } from 'react'
 import { Search, X } from 'lucide-react'
 import { Input } from '@/presentation/components/ui/input'
@@ -15,7 +14,6 @@ export function SearchBar() {
   const [localValue, setLocalValue] = useState(storeSearch)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Sincronizar el valor local si el store se resetea externamente
   useEffect(() => {
     setLocalValue(storeSearch)
   }, [storeSearch])
@@ -42,7 +40,6 @@ export function SearchBar() {
     fetchProducts()
   }
 
-  // Limpiar el timer al desmontar el componente
   useEffect(() => {
     return () => {
       if (timerRef.current) {

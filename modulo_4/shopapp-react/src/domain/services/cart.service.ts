@@ -1,4 +1,3 @@
-// src/domain/services/cart.service.ts
 import type { CartItem } from '../entities/cart-item.entity'
 
 export function calculateItemCount(items: CartItem[]): number {

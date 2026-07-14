@@ -1,4 +1,3 @@
-// src/presentation/store/cart.store.ts
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { calculateItemCount, calculateSubtotal, isCartEmpty } from '@/domain/services/cart.service'
@@ -89,7 +88,6 @@ export const useCartStore = create<CartState & CartActions>()(
     {
       name: 'shopapp_cart',
       storage: createJSONStorage(() => localStorage),
-      // Solo persistimos los ítems; isOpen siempre arranca en false.
       partialize: (state) => ({ items: state.items }),
     },
   ),

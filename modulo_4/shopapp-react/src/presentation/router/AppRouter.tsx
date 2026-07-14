@@ -1,26 +1,24 @@
-// src/presentation/router/AppRouter.tsx
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Suspense, lazy, useEffect } from 'react'
 import { useAuthStore } from '@/presentation/store/auth.store'
 import ProtectedRoute from './ProtectedRoute'
 import AppShell from '@/presentation/components/AppShell'
-import PlaceholderPage from '../pages/PlaceholderPage'
-import CatalogPage from '../pages/catalog/CatalogPage'
-import ProductDetailPage from '../pages/catalog/ProductDetailPage'
-import CartPage from '../pages/cart/CartPage'
 
-// ─── Lazy imports ─────────────────────────────────────────────────────────────
-
-// Auth (sin shell)
 const LoginPage = lazy(() => import('../pages/auth/LoginPage'))
 const RegisterPage = lazy(() => import('../pages/auth/RegisterPage'))
-
-// Órdenes (módulo 7)
+const CatalogPage = lazy(() => import('../pages/catalog/CatalogPage'))
+const ProductDetailPage = lazy(() => import('../pages/catalog/ProductDetailPage'))
+const CartPage = lazy(() => import('../pages/cart/CartPage'))
 const CheckoutPage = lazy(() => import('../pages/orders/CheckoutPage'))
 const OrdersPage = lazy(() => import('../pages/orders/OrdersPage'))
 const OrderDetailPage = lazy(() => import('../pages/orders/OrderDetailPage'))
-
-// ─── Loader global ────────────────────────────────────────────────────────────
+const ProfilePage = lazy(() => import('../pages/profile/ProfilePage'))
+const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboardPage'))
+const AdminCategoriesPage = lazy(() => import('../pages/admin/AdminCategoriesPage'))
+const AdminProductsPage = lazy(() => import('../pages/admin/AdminProductsPage'))
+const AdminOrdersPage = lazy(() => import('../pages/admin/AdminOrdersPage'))
+const AdminOrderDetailPage = lazy(() => import('../pages/admin/AdminOrderDetailPage'))
+const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'))
 
 function PageLoader() {
   return (
@@ -30,13 +28,9 @@ function PageLoader() {
   )
 }
 
-// ─── Router ───────────────────────────────────────────────────────────────────
-
 export default function AppRouter() {
   const loadSession = useAuthStore((state) => state.loadSession)
 
-  // Cargar la sesión guardada al iniciar la app.
-  // loadSession() restaura los tokens y valida el token con /auth/me/
   useEffect(() => {
     loadSession()
   }, [loadSession])
@@ -45,31 +39,19 @@ export default function AppRouter() {
     <BrowserRouter>
       <Suspense fallback={<PageLoader />}>
         <Routes>
-          {/* ── Rutas de autenticación (sin AppShell) ── */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
-          {/* ── Rutas con AppShell ── */}
           <Route element={<AppShell />}>
-            {/* Públicas — placeholder hasta el módulo 4/5 */}
-            <Route path="/" element={<CatalogPage/>} />
-            <Route path="/catalog" element={<CatalogPage/>} />
-            <Route path="/products/:id" element={<ProductDetailPage/>} />
+            <Route path="/" element={<CatalogPage />} />
+            <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/products/:id" element={<ProductDetailPage />} />
 
-            {/* Requieren autenticación */}
             <Route
               path="/cart"
               element={
                 <ProtectedRoute>
-                  <CartPage/>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/orders/new"
-              element={
-                <ProtectedRoute>
-                  <CheckoutPage />
+                  <CartPage />
                 </ProtectedRoute>
               }
             />
@@ -78,6 +60,14 @@ export default function AppRouter() {
               element={
                 <ProtectedRoute>
                   <OrdersPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/orders/new"
+              element={
+                <ProtectedRoute>
+                  <CheckoutPage />
                 </ProtectedRoute>
               }
             />
@@ -93,17 +83,16 @@ export default function AppRouter() {
               path="/profile"
               element={
                 <ProtectedRoute>
-                  <PlaceholderPage title="Perfil — Módulo 8" />
+                  <ProfilePage />
                 </ProtectedRoute>
               }
             />
 
-            {/* Requieren autenticación + rol staff — placeholder hasta los módulos 9 a 13 */}
             <Route
               path="/admin"
               element={
                 <ProtectedRoute requireStaff>
-                  <PlaceholderPage title="Admin Dashboard — Módulo 9" />
+                  <AdminDashboardPage />
                 </ProtectedRoute>
               }
             />
@@ -111,7 +100,7 @@ export default function AppRouter() {
               path="/admin/categories"
               element={
                 <ProtectedRoute requireStaff>
-                  <PlaceholderPage title="Admin Categorías — Módulo 10" />
+                  <AdminCategoriesPage />
                 </ProtectedRoute>
               }
             />
@@ -119,7 +108,7 @@ export default function AppRouter() {
               path="/admin/products"
               element={
                 <ProtectedRoute requireStaff>
-                  <PlaceholderPage title="Admin Productos — Módulo 11" />
+                  <AdminProductsPage />
                 </ProtectedRoute>
               }
             />
@@ -127,7 +116,15 @@ export default function AppRouter() {
               path="/admin/orders"
               element={
                 <ProtectedRoute requireStaff>
-                  <PlaceholderPage title="Admin Órdenes — Módulo 12" />
+                  <AdminOrdersPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/orders/:id"
+              element={
+                <ProtectedRoute requireStaff>
+                  <AdminOrderDetailPage />
                 </ProtectedRoute>
               }
             />
@@ -135,13 +132,12 @@ export default function AppRouter() {
               path="/admin/users"
               element={
                 <ProtectedRoute requireStaff>
-                  <PlaceholderPage title="Admin Usuarios — Módulo 13" />
+                  <AdminUsersPage />
                 </ProtectedRoute>
               }
             />
           </Route>
 
-          {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>

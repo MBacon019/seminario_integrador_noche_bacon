@@ -1,4 +1,3 @@
-// src/presentation/components/SortSelect.tsx
 import {
   Select,
   SelectContent,

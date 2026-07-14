@@ -1,4 +1,3 @@
-// src/presentation/pages/orders/OrderDetailPage.tsx
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
@@ -19,8 +18,6 @@ import { useOrderStore } from '@/presentation/store/order.store'
 import { formatPrice, formatDate } from '@/presentation/utils/formatters'
 import { StatusBadge } from '@/presentation/components/StatusBadge'
 import type { OrderStatus } from '@/domain/enums/order-status.enum'
-
-// ── Línea de tiempo de estado ─────────────────────────────────────────────────
 
 const STATUS_STEPS: { status: OrderStatus; label: string }[] = [
   { status: 'pending', label: 'Recibido' },
@@ -88,8 +85,6 @@ function StatusTimeline({ currentStatus }: StatusTimelineProps) {
   )
 }
 
-// ── Skeleton ──────────────────────────────────────────────────────────────────
-
 function OrderDetailSkeleton() {
   return (
     <div className="container max-w-3xl py-8">
@@ -103,8 +98,6 @@ function OrderDetailSkeleton() {
     </div>
   )
 }
-
-// ── Página principal ─────────────────────────────────────────────────────────
 
 export default function OrderDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -146,7 +139,7 @@ export default function OrderDetailPage() {
           <p className="mt-1 text-sm text-muted-foreground">
             Realizado el {formatDate(order.created_at)}
             {order.updated_at !== order.created_at && (
-              <> · Actualizado el {formatDate(order.updated_at)}</>
+              <> &middot; Actualizado el {formatDate(order.updated_at)}</>
             )}
           </p>
         </div>

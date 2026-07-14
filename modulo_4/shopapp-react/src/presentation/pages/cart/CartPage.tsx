@@ -1,4 +1,3 @@
-// src/presentation/pages/cart/CartPage.tsx
 import { Link, useNavigate } from 'react-router-dom'
 import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react'
 
@@ -8,8 +7,6 @@ import { Separator } from '@/presentation/components/ui/separator'
 import { useCartStore } from '@/presentation/store/cart.store'
 import { formatPrice } from '@/presentation/utils/formatters'
 import type { CartItem } from '@/domain/entities/cart-item.entity'
-
-// ── Fila de un ítem ──────────────────────────────────────────────────────────
 
 interface CartItemRowProps {
   item: CartItem
@@ -24,7 +21,6 @@ function CartItemRow({ item, onUpdateQuantity, onRemove }: CartItemRowProps) {
   return (
     <>
       <div className="flex gap-4 py-4">
-        {/* Miniatura */}
         <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border bg-muted">
           {product.image ? (
             <img
@@ -39,7 +35,6 @@ function CartItemRow({ item, onUpdateQuantity, onRemove }: CartItemRowProps) {
           )}
         </div>
 
-        {/* Detalles */}
         <div className="flex flex-1 flex-col justify-between">
           <div className="flex items-start justify-between gap-2">
             <div>
@@ -62,7 +57,6 @@ function CartItemRow({ item, onUpdateQuantity, onRemove }: CartItemRowProps) {
             </Button>
           </div>
 
-          {/* Controles de cantidad y total de línea */}
           <div className="flex items-center justify-between">
             <div className="flex items-center rounded-md border">
               <Button
@@ -102,8 +96,6 @@ function CartItemRow({ item, onUpdateQuantity, onRemove }: CartItemRowProps) {
   )
 }
 
-// ── Estado vacío ─────────────────────────────────────────────────────────────
-
 function EmptyCart() {
   return (
     <div className="flex flex-col items-center justify-center gap-6 py-24 text-center">
@@ -120,8 +112,6 @@ function EmptyCart() {
     </div>
   )
 }
-
-// ── Página principal ─────────────────────────────────────────────────────────
 
 export default function CartPage() {
   const navigate = useNavigate()
@@ -145,7 +135,6 @@ export default function CartPage() {
       </h1>
 
       <div className="grid gap-8 lg:grid-cols-3">
-        {/* Lista de ítems */}
         <div className="lg:col-span-2">
           {items.map((item) => (
             <CartItemRow
@@ -166,7 +155,6 @@ export default function CartPage() {
           </div>
         </div>
 
-        {/* Resumen — sticky en desktop */}
         <aside className="h-fit rounded-xl border p-6 lg:sticky lg:top-24">
           <h2 className="mb-4 text-lg font-semibold">Resumen del pedido</h2>
 
